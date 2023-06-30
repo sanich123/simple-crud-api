@@ -1,7 +1,8 @@
+import 'dotenv/config';
 import { createServer, IncomingMessage, ServerResponse } from "http";
 
 const port = 3000;
-
+console.log(process.env.PORT)
 const server = createServer((req: IncomingMessage, res: ServerResponse) => {
   console.log(req);
   res.statusCode = 200;
