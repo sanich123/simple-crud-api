@@ -10,6 +10,10 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": false,
+    "noEmit": true,
+    "moduleResolution": "NodeNext",
   }
 }
