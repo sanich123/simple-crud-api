@@ -1,5 +1,6 @@
 import { User } from "../types/types.ts";
 
+
 class DataBase {
   users: User[];
 
