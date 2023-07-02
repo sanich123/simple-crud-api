@@ -1,20 +1,20 @@
 import { ServerResponse } from "http";
 import { validate } from "uuid";
-import { MESSAGES, RESPONSE_CODES, RESPONSE_TYPE } from "../types/types.ts";
+import { MESSAGES, RESPONSE_CODES } from "../types/types.ts";
 import { dataBase } from "../const/db.ts";
 import { handleServerError } from "./utils.ts";
 
-export function getUser(id: string, response: ServerResponse) {
+export async function deleteUserById(userId: string, response: ServerResponse) {
   try {
-    if (!validate(id)) {
+    if (!validate(userId)) {
       response.statusCode = RESPONSE_CODES.failure;
       response.end(MESSAGES.invalidUuid);
       return;
     }
-    if (dataBase.checkIfUserExists(id)) {
-      response.statusCode = RESPONSE_CODES.success;
-      response.setHeader("Content-Type", RESPONSE_TYPE.appJson);
-      response.end(JSON.stringify(dataBase.getUser(id)));
+    if (dataBase.checkIfUserExists(userId)) {
+      dataBase.deleteUser(userId);
+      response.statusCode = RESPONSE_CODES.successDelete;
+      response.end();
     } else {
       response.statusCode = RESPONSE_CODES.notFound;
       response.end(MESSAGES.notFoundId);
